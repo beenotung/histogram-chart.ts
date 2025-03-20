@@ -36,5 +36,13 @@
     "onlyBuiltDependencies": [
       "canvas"
     ]
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/beenotung/histogram-chart.ts.git"
+  },
+  "bugs": {
+    "url": "https://github.com/beenotung/histogram-chart.ts/issues"
+  },
+  "homepage": "https://github.com/beenotung/histogram-chart.ts#readme"
 }
