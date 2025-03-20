@@ -66,6 +66,7 @@ Options:
   --height=<height>  Height of the chart, default: 300
   --min-value=<min_value>  Minimum value of the chart, default: min value of data
   --max-value=<max_value>  Maximum value of the chart, default: max value of data
+  --bucket-count=<bucket_count>  Number of buckets, default: sqrt(data.length)
   <data_file>  File containing the data, can be txt, csv, tsv
   <image_file>  File to save the image, can be png, jpg
 
@@ -74,7 +75,7 @@ Remark:
 
 Examples:
   histogram-chart log.txt chart.png
-  histogram-chart --title="Histogram of Request Latency" --width=600 --height=300 log.txt chart.png
+  histogram-chart --title="Histogram of Request Latency" log.txt chart.png
 ```
 
 ## Typescript Signature
@@ -99,6 +100,8 @@ export function node_plot(options: {
   min_value?: number
   /** default: `Math.max(...data)` */
   max_value?: number
+  /** default: `Math.sqrt(data.length)` */
+  bucket_count?: number
 }): void
 ```
 
@@ -124,6 +127,8 @@ export type BrowserPlotOptions = {
   min_value?: number
   /** default: `Math.max(...data)` */
   max_value?: number
+  /** default: `Math.sqrt(data.length)` */
+  bucket_count?: number
 }
 
 export function browser_plot(

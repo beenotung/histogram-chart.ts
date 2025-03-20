@@ -6,6 +6,7 @@ let image_file = ''
 let title = ''
 let min_value = undefined
 let max_value = undefined
+let bucket_count = undefined
 
 for (let i = 2; i < process.argv.length; i++) {
   let arg = process.argv[i]
@@ -24,6 +25,7 @@ Options:
   --height=<height>  Height of the chart, default: 300
   --min-value=<min_value>  Minimum value of the chart, default: min value of data
   --max-value=<max_value>  Maximum value of the chart, default: max value of data
+  --bucket-count=<bucket_count>  Number of buckets, default: sqrt(data.length)
   <data_file>  File containing the data, can be txt, csv, tsv
   <image_file>  File to save the image, can be png, jpg
 
@@ -32,7 +34,7 @@ Remark:
 
 Examples:
   histogram-chart log.txt chart.png
-  histogram-chart --title="Histogram of Request Latency" --width=600 --height=300 log.txt chart.png
+  histogram-chart --title="Histogram of Request Latency" log.txt chart.png
 `.trim(),
       )
       process.exit(0)
@@ -54,6 +56,14 @@ Examples:
         max_value = parseFloat(arg.slice('--max-value='.length))
         if (Number.isNaN(max_value)) {
           console.error(`Error: invalid max value: '${arg}'`)
+          process.exit(1)
+        }
+        break
+      }
+      if (arg.startsWith('--bucket-count=')) {
+        bucket_count = parseInt(arg.slice('--bucket-count='.length))
+        if (Number.isNaN(bucket_count)) {
+          console.error(`Error: invalid bucket count: '${arg}'`)
           process.exit(1)
         }
         break
@@ -121,4 +131,5 @@ node_plot({
   data,
   title,
   file: image_file,
+  bucket_count,
 })

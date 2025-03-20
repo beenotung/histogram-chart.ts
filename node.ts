@@ -11,6 +11,8 @@ export function node_plot(options: {
   height: number
   data: number[]
   title: string
+  /** default: `Math.sqrt(data.length)` */
+  bucket_count?: number
   /** default: `Math.min(...data)` */
   min_value?: number
   /** default: `Math.max(...data)` */
