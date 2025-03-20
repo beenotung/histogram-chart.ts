@@ -2,11 +2,19 @@
   "name": "histogram-chart.ts",
   "version": "1.0.1",
   "description": "Generate histogram chart in browser, node.js, and cli.",
-  "main": "dist/index.js",
+  "main": "dist/node.js",
+  "types": "dist/node.d.ts",
+  "browser": "dist/browser.js",
+  "jsdelivr": "dist/browser.js",
+  "unpkg": "dist/browser.js",
+  "bin": {
+    "histogram-chart": "./bin.js",
+    "histogram-chart.ts": "./bin.js"
+  },
   "scripts": {
     "test": "tsc --noEmit",
     "clean": "rimraf dist",
-    "build": "rimraf dist && tsc -p . && rimraf dist/test.* && mk-package",
+    "build": "rimraf dist && tsc -p . && rimraf dist/test.*",
     "tsc": "tsc -p ."
   },
   "keywords": [
@@ -28,13 +36,11 @@
   "type": "commonjs",
   "devDependencies": {
     "@types/node": "^22.13.10",
-    "mk-package": "^1.0.2",
     "rimraf": "^6.0.1",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.8.2"
   },
-  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
