@@ -1,6 +1,6 @@
 {
   "name": "histogram-chart.ts",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Generate histogram chart in browser, node.js, and cli.",
   "main": "dist/node.js",
   "types": "dist/node.d.ts",
