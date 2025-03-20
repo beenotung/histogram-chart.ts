@@ -11,6 +11,10 @@ export type BrowserPlotOptions = {
   mimeType?: 'image/png' | 'image/jpeg' | 'image/webp'
   /** compression quality for jpeg and webp */
   quality?: number
+  /** default: `Math.min(...data)` */
+  min_value?: number
+  /** default: `Math.max(...data)` */
+  max_value?: number
 }
 
 export function browser_plot(
@@ -29,14 +33,13 @@ export function browser_plot(
     as?: 'dataUrl' | 'blob'
   },
 ): string | Promise<Blob> {
-  let { width, height, data, title, mimeType, quality, as } = options
+  let { width, height, mimeType, quality, as, ...rest } = options
   let canvas = document.createElement('canvas')
   canvas.width = width
   canvas.height = height
   plot({
-    data,
-    title,
     canvas,
+    ...rest,
   })
   if (as === 'dataUrl') {
     return new Promise<Blob>((resolve, reject) =>

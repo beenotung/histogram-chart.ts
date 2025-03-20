@@ -4,6 +4,8 @@ import { node_plot } from './node'
 let data_file = ''
 let image_file = ''
 let title = ''
+let min_value = undefined
+let max_value = undefined
 
 for (let i = 2; i < process.argv.length; i++) {
   let arg = process.argv[i]
@@ -20,8 +22,13 @@ Options:
   --title=<title>  Title of the chart, default: "Histogram"
   --width=<width>  Width of the chart, default: 600
   --height=<height>  Height of the chart, default: 300
+  --min-value=<min_value>  Minimum value of the chart, default: min value of data
+  --max-value=<max_value>  Maximum value of the chart, default: max value of data
   <data_file>  File containing the data, can be txt, csv, tsv
   <image_file>  File to save the image, can be png, jpg
+
+Remark:
+  The data file and image file can be given in any order.
 
 Examples:
   histogram-chart log.txt chart.png
@@ -33,6 +40,22 @@ Examples:
     default: {
       if (arg.startsWith('--title=')) {
         title = arg.slice('--title='.length)
+        break
+      }
+      if (arg.startsWith('--min-value=')) {
+        min_value = parseFloat(arg.slice('--min-value='.length))
+        if (Number.isNaN(min_value)) {
+          console.error(`Error: invalid min value: '${arg}'`)
+          process.exit(1)
+        }
+        break
+      }
+      if (arg.startsWith('--max-value=')) {
+        max_value = parseFloat(arg.slice('--max-value='.length))
+        if (Number.isNaN(max_value)) {
+          console.error(`Error: invalid max value: '${arg}'`)
+          process.exit(1)
+        }
         break
       }
       if (

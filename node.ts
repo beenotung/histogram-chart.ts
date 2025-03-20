@@ -3,16 +3,20 @@ import { plot } from './core'
 import { writeFileSync } from 'fs'
 
 export function node_plot(options: {
+  /** .png, .svg, or .pdf */
+  file: string
   /** e.g. 600 */
   width: number
   /** e.g. 300 */
   height: number
   data: number[]
   title: string
-  /** .png, .svg, or .pdf */
-  file: string
+  /** default: `Math.min(...data)` */
+  min_value?: number
+  /** default: `Math.max(...data)` */
+  max_value?: number
 }) {
-  let { width, height, data, title, file } = options
+  let { width, height, file, ...rest } = options
   let parse = () => {
     if (file.endsWith('.pdf')) {
       return {
@@ -33,9 +37,8 @@ export function node_plot(options: {
   }
   let { canvas } = parse()
   plot({
-    data,
-    title,
     canvas,
+    ...rest,
   })
   let buffer = canvas.toBuffer()
   writeFileSync(file, buffer)

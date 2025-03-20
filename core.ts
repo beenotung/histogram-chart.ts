@@ -5,12 +5,14 @@ export function plot(options: {
   /** default: `Math.sqrt(data.length)` */
   bucket_count?: number
   title: string
+  min_value?: number
+  max_value?: number
   canvas: Canvas | HTMLCanvasElement
 }) {
   let { data, title, canvas } = options
 
-  let min_value = Math.min(...data)
-  let max_value = Math.max(...data)
+  let min_value = options.min_value ?? Math.min(...data)
+  let max_value = options.max_value ?? Math.max(...data)
   let value_range = max_value - min_value
 
   let bucket_count = options.bucket_count ?? Math.sqrt(data.length)
