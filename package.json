@@ -6,7 +6,7 @@
   "scripts": {
     "test": "tsc --noEmit",
     "clean": "rimraf dist",
-    "build": "rimraf dist && tsc -p . && rimraf dist/tsconfig.tsbuildinfo",
+    "build": "rimraf dist && tsc -p . && rimraf dist/test.* && mk-package",
     "tsc": "tsc -p ."
   },
   "keywords": [],
@@ -15,6 +15,7 @@
   "type": "commonjs",
   "devDependencies": {
     "@types/node": "^22.13.10",
+    "mk-package": "^1.0.2",
     "rimraf": "^6.0.1",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
