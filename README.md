@@ -54,8 +54,27 @@ browser_plot({
 ### CLI
 
 ```bash
-npm i -g histogram-chart.ts
-histogram-chart --help
+> npm i -g histogram-chart.ts
+> histogram-chart --help
+histogram-chart
+
+Usage: histogram-chart [options] <data_file> <image_file>
+
+Options:
+  --title=<title>  Title of the chart, default: "Histogram"
+  --width=<width>  Width of the chart, default: 600
+  --height=<height>  Height of the chart, default: 300
+  --min-value=<min_value>  Minimum value of the chart, default: min value of data
+  --max-value=<max_value>  Maximum value of the chart, default: max value of data
+  <data_file>  File containing the data, can be txt, csv, tsv
+  <image_file>  File to save the image, can be png, jpg
+
+Remark:
+  The data file and image file can be given in any order.
+
+Examples:
+  histogram-chart log.txt chart.png
+  histogram-chart --title="Histogram of Request Latency" --width=600 --height=300 log.txt chart.png
 ```
 
 ## Typescript Signature
