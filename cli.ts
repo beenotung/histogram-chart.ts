@@ -131,5 +131,7 @@ node_plot({
   data,
   title,
   file: image_file,
+  min_value,
+  max_value,
   bucket_count,
 })
