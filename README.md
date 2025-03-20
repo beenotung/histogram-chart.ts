@@ -6,6 +6,8 @@ Generate histogram chart in browser, node.js, and cli.
 [![Minified Package Size](https://img.shields.io/bundlephobia/min/histogram-chart.ts)](https://bundlephobia.com/package/histogram-chart.ts)
 [![Minified and Gzipped Package Size](https://img.shields.io/bundlephobia/minzip/histogram-chart.ts)](https://bundlephobia.com/package/histogram-chart.ts)
 
+![Example Histogram Chart](./chart.png)
+
 ## Features
 
 - Default styling
